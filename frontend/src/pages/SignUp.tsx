@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface formDataProps {
   userName: string;
@@ -11,6 +11,7 @@ export default function SignUp() {
   const [formData, setFormData] = useState<formDataProps>({} as formDataProps);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -31,6 +32,7 @@ export default function SignUp() {
       } else {
         setError(false);
       }
+      navigate("/sign-in");
     } catch (err) {
       console.log("error ", err);
       setError(true);
